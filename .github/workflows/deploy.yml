@@ -28,4 +28,4 @@ jobs:
           Rscript -e 'rsconnect::setAccountInfo(name="${{ secrets.SHINYUSERNAME }}", token="${{ secrets.SHINYTOKEN }}", secret="${{ secrets.SHINYSECRET }}")'
       - name: Deploy
         run: |
-          Rscript -e 'rsconnect::deployApp(appName="FruitRecognition")'
+          Rscript -e 'rsconnect::deployApp(appName="FruitRecognition",forceUpdate = TRUE)'
