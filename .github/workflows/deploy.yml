@@ -22,8 +22,6 @@ jobs:
       - name: Install R Packages
         run: |
           install.packages(c("rsconnect", "shiny", "magick", "keras3", "reticulate"))
-          # Initialize keras to ensure python dependencies are bundled
-          keras3::install_keras()
         shell: Rscript {0}
       - name: Authorize shinyapps.io
         run: |
