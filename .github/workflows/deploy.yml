@@ -25,21 +25,27 @@ jobs:
             python3-pip \
             python3-venv \
             libpython3-dev
-
-      - name: Install R Packages
+            
+      - name: Install Core R Packages
         run: |
-          install.packages("reticulate", repos="https://cloud.r-project.org", dependencies=TRUE)
-          if (!requireNamespace("reticulate", quietly = TRUE)) stop("reticulate failed to install")
-          install.packages(c("rsconnect", "remotes"), repos="https://cloud.r-project.org")
+          install.packages(c("reticulate", "rsconnect", "remotes"), repos="https://cloud.r-project.org")
+        shell: Rscript {0}
+
+      - name: Install Keras from GitHub
+        run: |
+          # Fresh R session starts here and will now see 'reticulate' and 'remotes'
           remotes::install_github("rstudio/keras3")
         shell: Rscript {0}
 
       - name: Initialize Keras and Python
         run: |
-          # We use direct calls to ensure the environment initializes correctly
+          # Another fresh session to finalize setup
           reticulate::install_python()
           keras3::install_keras(backend = "tensorflow")
         shell: Rscript {0}
+
+
+        
 
       - name: Authorize shinyapps.io
         run: |
