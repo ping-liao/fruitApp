@@ -1,2 +1,2 @@
-source("renv/activate.R")
-Sys.setenv(RETICULATE_PYTHON = "~/.virtualenvs/r-reticulate/bin/python")
+library(reticulate)
+Sys.setenv(RETICULATE_PYTHON = "/usr/bin/python3")

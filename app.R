@@ -1,4 +1,4 @@
-Sys.setenv(RETICULATE_PYTHON = "python3_env/bin/python")
+Sys.setenv(RETICULATE_PYTHON = "/usr/bin/python3")
 library(shiny)
 library(keras3)
 library(magick)
