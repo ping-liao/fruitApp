@@ -22,8 +22,9 @@ jobs:
             libssl-dev \
             libxml2-dev \
             libmagick++-dev \
-            python3-pip \ 
+            python3-pip \
             python3-venv
+
 
       - name: Install R Packages
         env:
