@@ -21,7 +21,8 @@ jobs:
 
       - name: Install R Packages
         run: |
-          install.packages(c("rsconnect", "shiny", "magick", "keras3", "reticulate"))
+          install.packages(c("rsconnect", "remotes"))
+          remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Authorize shinyapps.io
         run: |
