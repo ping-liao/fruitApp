@@ -2,6 +2,10 @@ library(shiny)
 library(keras3)
 library(magick)
 
+if (!reticulate::py_available()) {
+  keras3::install_keras()
+}
+
 # --- 1. SETUP & MODEL LOADING ---
 
 # Load the model
