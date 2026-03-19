@@ -1,6 +1,13 @@
+Sys.setenv(RETICULATE_PYTHON = "python3_env/bin/python")
 library(shiny)
 library(keras3)
 library(magick)
+library(reticulate)
+
+# Force the app to use the virtualenv created by shinyapps.io
+if (dir.exists("python3_env")) {
+  reticulate::use_virtualenv("python3_env", required = TRUE)
+}
 
 if (!reticulate::py_available()) {
   keras3::install_keras()
