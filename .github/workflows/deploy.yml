@@ -22,9 +22,9 @@ jobs:
       - name: Authorize shinyapps.io
         run: |
           rsconnect::setAccountInfo(
-            name = "${{ secrets.SHINYAPPS_ACCOUNT }}",
-            token = "${{ secrets.SHINYAPPS_TOKEN }}",
-            secret = "${{ secrets.SHINYAPPS_SECRET }}"
+            name = "${{ secrets.SHINYUSERNAME }}",
+            token = "${{ secrets.SHINYTOKEN }}",
+            secret = "${{ secrets.SHINYSECRET }}"
           )
         shell: Rscript {0}
 
