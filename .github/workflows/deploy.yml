@@ -17,13 +17,23 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libmagick++-dev
+          sudo apt-get install -y \
+            libcurl4-openssl-dev \
+            libssl-dev \
+            libxml2-dev \
+            libmagick++-dev \
+            python3-pip \
+            python3-venv
 
       - name: Install R Packages
         run: |
-          install.packages(c("rsconnect", "remotes"))
-          remotes::install_deps(dependencies = TRUE)
+          install.packages(c("rsconnect", "remotes", "reticulate"))
+          remotes::install_github("rstudio/keras3")
+          # This installs the Python backend needed for the runner to 'see' Keras
+          reticulate::install_python()
+          keras3::install_keras()
         shell: Rscript {0}
+          
       - name: Authorize shinyapps.io
         run: |
           Rscript -e 'rsconnect::setAccountInfo(name="${{ secrets.SHINYUSERNAME }}", token="${{ secrets.SHINYTOKEN }}", secret="${{ secrets.SHINYSECRET }}")'
