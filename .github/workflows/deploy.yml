@@ -33,7 +33,7 @@ jobs:
           rsconnect::deployApp(
             appDir = ".",
             appName = "FruitRecognition",
-            account = "${{ secrets.SHINYAPPS_ACCOUNT }}",
+            account = "${{ secrets.SHINYUSERNAME }}",
             launch.browser = FALSE
           )
         shell: Rscript {0}
