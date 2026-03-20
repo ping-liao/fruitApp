@@ -24,21 +24,21 @@ jobs:
             libmagick++-dev \
             python3-pip \
             python3-venv
-      - name: Install R Packages
-        env:
-          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      
-        run: |
-          options(repos = c(CRAN = "https://cloud.r-project.org"))
-          install.packages(c("rsconnect", "remotes", "reticulate"))
-          library(remotes)
-          library(reticulate)
-          remotes::install_github("rstudio/keras3")
-          # This installs the Python backend needed for the runner to 'see' Keras
-          install_python()
-          keras3::install_keras()
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            rsconnect
+            remotes
+            reticulate
+            rstudio/keras3
+
+      - name: Install Keras
         shell: Rscript {0}
-          
+        run: |
+           reticulate::install_python()
+           keras3::install_keras()
+           
       - name: Authorize shinyapps.io
         run: |
           Rscript -e 'rsconnect::setAccountInfo(name="${{ secrets.SHINYUSERNAME }}", token="${{ secrets.SHINYTOKEN }}", secret="${{ secrets.SHINYSECRET }}")'
