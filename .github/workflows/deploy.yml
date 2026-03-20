@@ -30,9 +30,11 @@ jobs:
       
         run: |
           install.packages(c("rsconnect", "remotes", "reticulate"))
+          library(remotes)
+          library(reticulate)
           remotes::install_github("rstudio/keras3")
           # This installs the Python backend needed for the runner to 'see' Keras
-          reticulate::install_python()
+          install_python()
           keras3::install_keras()
         shell: Rscript {0}
           
