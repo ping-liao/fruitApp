@@ -46,7 +46,8 @@ jobs:
         run: Rscript -e 'install.packages("reticulate", repos="https://cran.rstudio.com")'
 
       - name: Install keras3
-        run: Rscript -e 'remotes::install_github("rstudio/keras3")'
+        run: Rscript -e 'install.packages("keras3", repos="https://cran.rstudio.com")'
+        shell: Rscript {0}
         
       - name: Install Keras
         shell: Rscript {0}
