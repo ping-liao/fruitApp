@@ -32,6 +32,9 @@ jobs:
         shell: Rscript {0}
       - name: Install rsconnect
         run: Rscript -e 'install.packages("rsconnect", repos="https://cran.rstudio.com")'
+      - name: Install magick
+        run: Rscript -e 'install.packages("magick", repos="https://cran.rstudio.com")'
+        
       - name: Install remotes
         run: Rscript -e 'install.packages("remotes", repos="https://cran.rstudio.com")'
       - name: Install reticulate
