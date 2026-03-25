@@ -48,6 +48,7 @@ jobs:
       - name: Install keras3
         run: Rscript -e 'install.packages("keras3", repos="https://cran.rstudio.com")'
         
+        
      - name: Install Shiny and Keras dependencies
         run: |
           install.packages("shiny", repos="https://cran.rstudio.com")
