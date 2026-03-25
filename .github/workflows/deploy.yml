@@ -35,7 +35,7 @@ jobs:
           options(repos = c(CRAN = "https://cran.rstudio.com"))
         shell: Rscript {0}
 
-      # These will now actually run because the step above won't scan your code
+      
       - name: Install rsconnect
         run: Rscript -e 'install.packages("rsconnect", repos="https://cran.rstudio.com")'
 
@@ -47,7 +47,7 @@ jobs:
 
       - name: Install keras3
         run: Rscript -e 'install.packages("keras3", repos="https://cran.rstudio.com")'
-        shell: Rscript {0}
+        
         
       - name: Install Keras
         shell: Rscript {0}
