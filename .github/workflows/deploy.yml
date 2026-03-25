@@ -32,8 +32,22 @@ jobs:
             python3-venv
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: rsconnect, remotes, reticulate, rstudio/keras3
+        # Troubleshoot individual packages one-by-one
+      - name: Install rsconnect
+        run: Rscript -e 'install.packages("rsconnect", repos="https://cran.rstudio.com")'
+        shell: Rscript {0}
+
+      - name: Install remotes
+        run: Rscript -e 'install.packages("remotes", repos="https://cran.rstudio.com")'
+        shell: Rscript {0}
+
+      - name: Install reticulate
+        run: Rscript -e 'install.packages("reticulate", repos="https://cran.rstudio.com")'
+        shell: Rscript {0}
+
+      - name: Install keras3
+        run: Rscript -e 'remotes::install_github("rstudio/keras3")'
+        shell: Rscript {0}
 
       - name: Install Keras
         shell: Rscript {0}
