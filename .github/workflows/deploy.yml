@@ -30,29 +30,24 @@ jobs:
             libmagick++-dev \
             python3-pip \
             python3-venv
-      - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          dependencies: 'NA' 
-          # We only want it to set up the library paths, not install anything
-          packages: 'none' 
-        # Troubleshoot individual packages one-by-one
+      - name: Setup R Library
+        run: |
+          options(repos = c(CRAN = "https://cran.rstudio.com"))
+        shell: Rscript {0}
+
+      # These will now actually run because the step above won't scan your code
       - name: Install rsconnect
         run: Rscript -e 'install.packages("rsconnect", repos="https://cran.rstudio.com")'
-        shell: Rscript {0}
 
       - name: Install remotes
         run: Rscript -e 'install.packages("remotes", repos="https://cran.rstudio.com")'
-        shell: Rscript {0}
 
       - name: Install reticulate
         run: Rscript -e 'install.packages("reticulate", repos="https://cran.rstudio.com")'
-        shell: Rscript {0}
 
       - name: Install keras3
         run: Rscript -e 'remotes::install_github("rstudio/keras3")'
-        shell: Rscript {0}
-
+        
       - name: Install Keras
         shell: Rscript {0}
         run: |
