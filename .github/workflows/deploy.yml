@@ -33,11 +33,7 @@ jobs:
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            rsconnect
-            remotes
-            reticulate
-            rstudio/keras3
+          extra-packages: rsconnect, remotes, reticulate, rstudio/keras3
 
       - name: Install Keras
         shell: Rscript {0}
