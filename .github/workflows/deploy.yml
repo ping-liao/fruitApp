@@ -32,6 +32,11 @@ jobs:
             python3-venv
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          # This prevents the action from scanning app code and 
+          # failing when it can't find 'reticulate' immediately.
+          install-r: false
+          dependencies: "none"
         # Troubleshoot individual packages one-by-one
       - name: Install rsconnect
         run: Rscript -e 'install.packages("rsconnect", repos="https://cran.rstudio.com")'
